@@ -32,10 +32,10 @@ create_driver_table = '''CREATE TABLE IF NOT EXISTS DRIVER (
    PRIMARY KEY (Driver_id)
 );'''
 
-create_existstrip_detail_table = '''CREATE TABLE IF NOT EXISTSTRIP_DETAILS (
+create_trip_detail_table = '''CREATE TABLE IF NOT EXISTS TRIP_DETAILS (
    Trip_id integer NOT NULL,
    Trip_date DATE,
-   Trip_amt decimal(10,2),
+   Trip_amt DECIMAL(10, 2),
    Driver_id integer,
    Usr_id integer,
    Cab_id integer,
@@ -44,26 +44,26 @@ create_existstrip_detail_table = '''CREATE TABLE IF NOT EXISTSTRIP_DETAILS (
    PRIMARY KEY (Trip_id)
 );'''
 
-create_existsbill_detail_table = '''CREATE TABLE IF NOT EXISTSBILL_DETAILS (
+create_bill_detail_table = '''CREATE TABLE IF NOT EXISTS BILL_DETAILS (
    Bill_no integer NOT NULL,
    Bill_date DATE,
-   Advance_amt decimal(10,2),
-   Discount_amt decimal(10,2),
-   Total_amt decimal(10,2),
+   Advance_amt DECIMAL(10, 2),
+   Discount_amt DECIMAL(10, 2),
+   Total_amt DECIMAL(10, 2),
    Usr_id integer,
    Trip_id integer,
    PRIMARY KEY (Bill_no),
    UNIQUE (Trip_id)
 );'''
 
-create_existscustomer_service_table = '''CREATE TABLE IF NOT EXISTSCUSTOMER_SERVICE (
+create_customer_service_table = '''CREATE TABLE IF NOT EXISTS CUSTOMER_SERVICE (
    Emp_id integer NOT NULL,
    F_name VARCHAR(20),
    L_name VARCHAR(20),
    PRIMARY KEY (Emp_id)
 );'''
 
-create_existsfeedback_table = '''CREATE TABLE IF NOT EXISTSFEEDBACK (
+create_feedback_table = '''CREATE TABLE IF NOT EXISTS FEEDBACK (
    Fbk_id integer NOT NULL,
    Message VARCHAR(140),
    Email VARCHAR(50),
@@ -74,26 +74,26 @@ create_existsfeedback_table = '''CREATE TABLE IF NOT EXISTSFEEDBACK (
    UNIQUE (Emp_id)
 );'''
 
-create_existsowns_table = '''CREATE TABLE IF NOT EXISTSOWNS (
+create_owns_table = '''CREATE TABLE IF NOT EXISTS OWNS (
    Owner_id integer NOT NULL,
    No_Cars  integer,
    PRIMARY KEY (Owner_id)
 );'''
 
-create_exists_cab_owner_table = '''CREATE TABLE IF NOT EXISTSOWNER_CAB (
+create_cab_owner_table = '''CREATE TABLE IF NOT EXISTS OWNER_CAB (
    Owner_id integer NOT NULL,
    Cab_id integer,
    PRIMARY KEY (Owner_id, Cab_id)
 );'''
 
-create_exists_individual_table = '''CREATE TABLE IF NOT EXISTSINDIVIDUAL (
+create_individual_table = '''CREATE TABLE IF NOT EXISTS INDIVIDUAL (
    Ssn integer NOT NULL,
    Name VARCHAR(20),
    Owner_id integer,
    PRIMARY KEY (Ssn)
 );'''
 
-create_exists_cab_service_table = '''CREATE TABLE IF NOT EXISTSCAB_SERVICE_COMPANY (
+create_cab_service_table = '''CREATE TABLE IF NOT EXISTS CAB_SERVICE_COMPANY (
    Csc_id integer NOT NULL,
    Csc_name VARCHAR(20),
    Owner_id integer,
