@@ -41,14 +41,28 @@ def __DriverDataView__(cursor):
     st.write(driver_table)
 
 def __PastTripView__(cursor):
-    st.subheader("Past Trip Data:")
-    # cursor.execute(selectQuery.delete_trip_data)
-    # cursor.execute(insertQuery.insert_trip_detail)
-    cursor.execute(selectQuery.select_trip_data_all)
-    results = cursor.fetchall()
-    # Print the results
-    trips_table = pd.DataFrame(results, columns=df.trip_data_column)
-    st.write(trips_table)
+
+    custom_css = """
+    <style>
+    .center-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    </style>
+    """
+    st.markdown(custom_css, unsafe_allow_html=True)
+    with st.container() as center_container:
+        st.subheader("Past Trip Data:")
+        # cursor.execute(selectQuery.delete_trip_data)
+        # cursor.execute(insertQuery.insert_trip_detail)
+        cursor.execute(selectQuery.select_trip_data_all)
+        results = cursor.fetchall()
+        # Print the results
+        trips_table = pd.DataFrame(results, columns=df.trip_data_column)
+        st.write(trips_table)
 
 def __BillDetailsView__(cursor):
     st.subheader("Bill Detail Data:")
@@ -82,7 +96,7 @@ def __FeedbackDetailView__(cursor):
     st.write(driver_table)
 
 def __OwnsDetailView__(cursor):
-    st.subheader("Past Trip Data:")
+    st.subheader("Cab and its Owner Data:")
     # cursor.execute(selectQuery.delete_owns_data)
     # cursor.execute(insertQuery.insert_owns)
     cursor.execute(selectQuery.select_owns_data_all)
