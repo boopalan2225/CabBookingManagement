@@ -178,16 +178,6 @@ def __ClearTablesData__(cursor):
     cursor.execute(selectQuery.delete_individual_owner_data)
     cursor.execute(selectQuery.delete_cab_serice_owner_data)
 
-def __CreateButton__(cursor):
-    submit = st.button("Book")
-    if submit:
-        # st.session_state["my_input"] = my_input
-        # st.write("You have entered: ", my_input)
-        my_input = st.text_input("Input a text here", st.session_state["my_input"])
-        st.session_state["my_input"] = my_input
-        submit = st.button("Submit")
-        st.write("You have entered: ", my_input)
-
 def __CabDetailViewMain__(cursor):
         # cursor = db.getDbConnectionCursor()    # Create a cursor object
         # st.title("Cab Booking Management :car:")

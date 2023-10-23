@@ -19,3 +19,5 @@ cab_owner_column = ["Owner_id", "Cab_id"]
 individual_owner_column = ["Ssn", "Name", "Owner_id"]
 
 cab_service_owner_column = ["Csc_id", "Csc_name", "Owner_id"]
+
+homepage_book_column = ["Customer Name", "Customer address", "Customer Contact Number", "Cab Id", "Gender", "Customer Advance amount"]
