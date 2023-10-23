@@ -18,26 +18,14 @@ selectedScreen = option_menu(None, ["Home", "User Info", "Driver & Cab Info", "O
 
 cursor = db.getDbConnectionCursor()
 
-def __CreateButton__(cursor):
-    st.subheader("")
-
-    if "my_input" not in st.session_state:
-        st.session_state["my_input"] = ""
-        
-    col1, col2 = st.columns([0.5, 0.5])
-    # Add content to the first column
-    with col1:
-        st.markdown("<h3 style='text-align: right;'>Book your cab and resume you trip: </h3>", unsafe_allow_html=True)
-    # Add content to the second column
-    with col2:
-        book_cab = st.button("Book your cab", type="primary", help="Click to book your cab")
-
+def __BookingInput__(cursor):
     # Create an empty list to store booking information
+    st.markdown ("<h3 style='text-align: center; '>Book your cab and resume you trip: </h3s", unsafe_allow_html=True)
     booking_info = []
     close = False
 
     if close == False:
-        with st.form(key="booking_form", clear_on_submit = False):
+        with st.form(key="booking_form", clear_on_submit = True):
             # Use st.text_input to get user input
             booking_info.append(st.text_input("Enter Customer Name", key="name"))
             booking_info.append(st.text_input("Enter Customer Address", key="address"))
@@ -47,7 +35,7 @@ def __CreateButton__(cursor):
             booking_info.append(st.text_input("Customer Advance Amount", key="advance"))
 
             # Create a submit button within the form
-            submit = st.form_submit_button("Submit")
+            submit = st.form_submit_button("Confirm & Book", type = "primary")
             if submit:
                 try:
                     advanceFloat = format(float(booking_info[5]), '.2f')
@@ -61,6 +49,50 @@ def __CreateButton__(cursor):
                 book_table = pd.DataFrame([booking_info], columns=df.homepage_book_column)
                 st.write(book_table)
                 close = st.form_submit_button("Close")
+
+
+def __EndTripInput__(cursor):
+    # Create an empty list to store booking information
+    st.markdown ("<h3 style='text-align: center;'>End Your Trip with Memories: </h3>", unsafe_allow_html=True)
+    end_trip = []
+    close1 = False
+
+    if close1 == False:
+        with st.form(key="booking_form1", clear_on_submit = True):
+            # Use st.text_input to get user input
+            end_trip.append(st.text_input("Enter Booking Id", key="booking_id"))
+            end_trip.append(st.text_input("Enter Total Discount", key="discount"))
+
+            # Create a submit button within the form
+            end_trip_submit = st.form_submit_button("End Trip", type = "primary")
+            if end_trip_submit:
+                try:
+                    bookingId = int(end_trip[0])
+                    discountFloat1 = format(float(end_trip[1]), '.2f')
+                    cursor.callproc("TRIP_END", (bookingId, discountFloat1))
+                    db.connection.commit()
+                except Exception as err:
+                    print("Error:", err)
+                    
+                st.write("You have entered: ")
+                end_trip_table = pd.DataFrame([end_trip], columns=df.homepage_end_trip_column)
+                st.write(end_trip_table)
+                close1 = st.form_submit_button("Close")
+
+
+def __CreateButton__(cursor):
+    st.subheader("")
+
+    if "my_input" not in st.session_state:
+        st.session_state["my_input"] = ""
+        
+    col1, col2 = st.columns([0.5, 0.5])
+    # Add content to the first column
+    with col1:
+        __BookingInput__(cursor)    
+    
+    with col2:
+        __EndTripInput__(cursor)
 
 if selectedScreen == "Home":
     __CreateButton__(cursor)
