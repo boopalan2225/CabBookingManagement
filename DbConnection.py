@@ -18,3 +18,10 @@ try:
 except mysql.connector.Error as err:
     print("MySQL Connection Error: {}".format(err))
 
+def getDbConnectionCursor():
+    connectionStatus = connection.is_connected()
+    if connectionStatus:
+            print("Connected to MySQL")
+            return connection.cursor()    # Create a cursor object
+    else:
+        st.write(f"Connection to MySQL failed {connectionStatus}")
