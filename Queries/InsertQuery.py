@@ -1,7 +1,7 @@
 insert_cab = '''INSERT INTO CAB (Cab_id, Registration_no, Cab_Model, Cab_Year, Cab_type, Status, Driver_id)
 VALUES (1,'KA-15R-3367','BENZ 300',STR_TO_DATE('01 01 2017', '%m %e %Y'),'SUV','Available',1),
-(2, 'AB123CD', 'Toyota Camry', STR_TO_DATE('01 01 2017','%m %e %Y'), 'Sedan', 'Available', 101),
-(3, 'XY456ZW', 'Honda Accord', STR_TO_DATE('01 01 2017','%m %e %Y'), 'Sedan', 'Available', 102);'''
+(2, 'AB123CD', 'Toyota Camry', '01 01 2017, 'Sedan', 'Available', 101),
+(3, 'XY456ZW', 'Honda Accord', 01 01 2017, 'Sedan', 'Available', 102);'''
 
 insert_user = '''INSERT INTO USER_TBL (Usr_id, F_name, L_name, Contat_no, Gender, Address, Cab_id)
 VALUES (1, 'John', 'Doe', '1234567890', 'Male', '123 Main St', 101),

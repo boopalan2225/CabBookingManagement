@@ -12,7 +12,7 @@ st.title("")
 
 
 # horizontal menu
-selectedScreen = option_menu(None, ["Home", "User Info", "Driver & Cab Info", "Owner Info", "Trip History", "Bill Details", "Feedback", "Customer Service"], 
+selectedScreen = option_menu(None, ["Home", "User Info", "Driver & Cab Info", "Owner Info", "Trip History", "Bill Details", "Feedback"], 
     icons=['house', 'cloud-upload', "list-task", 'gear'], 
     menu_icon="cast", default_index=0, orientation="horizontal")
 
@@ -102,13 +102,14 @@ elif selectedScreen == "User Info":
 
 elif selectedScreen == "Driver & Cab Info":
     # Create two columns
-    col1, col2 = st.columns(2)
-    # Add content to the first column
-    with col1:
-        booking.__DriverDataView__(cursor)
+    # col1, col2 = st.columns(2)
+    # # Add content to the first column
+    # with col1:
+        booking.__getCabAndDriverView__(cursor)
+        st.write("---")
     # Add content to the second column
-    with col2:
-        booking.__CabDataView__(cursor)
+    # with col2:
+        booking.__inputCabAndDriverView__(cursor)
 
 elif selectedScreen == "Owner Info":
     # Create two columns
@@ -134,9 +135,6 @@ elif selectedScreen == "Bill Details":
 
 elif selectedScreen == "Feedback":
     booking.__FeedbackDetailView__(cursor)
-
-elif selectedScreen == "Customer Service":
-    booking.__CustomerServiceView__(cursor)
 
 else:
     st.write("Contact us at example@example.com")

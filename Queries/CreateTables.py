@@ -2,7 +2,7 @@ create_cab_table = '''CREATE TABLE IF NOT EXISTS CAB (
    Cab_id integer NOT NULL,
    Registration_no VARCHAR(20),
    Cab_Model VARCHAR(20),
-   Cab_Year DATE,
+   Cab_Year VARCHAR(10),
    Cab_type VARCHAR(20),
    Status VARCHAR(20),
    Driver_id integer,
